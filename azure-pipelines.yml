@@ -1,4 +1,9 @@
 # Maven
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: '001'
+    publishLocation: 'pipeline'
 - task: DownloadBuildArtifacts@1
   inputs:
     buildType: 'specific'
