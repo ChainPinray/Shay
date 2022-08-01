@@ -1,4 +1,13 @@
 # Maven
+- task: DownloadBuildArtifacts@1
+  inputs:
+    buildType: 'specific'
+    project: '1caabf28-caad-4f2c-9c01-07a7ae94fe54'
+    pipeline: '2'
+    specificBuildWithTriggering: true
+    buildVersionToDownload: 'latest'
+    downloadType: 'single'
+    downloadPath: '$(System.ArtifactsDirectory)'
 # Build your Java project and run tests with Apache Maven.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
