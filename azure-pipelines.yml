@@ -1,30 +1,4 @@
 # Maven
-
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(Pipeline.Workspace)'
-    artifact: '001'
-    publishLocation: 'pipeline'
-- task: DownloadBuildArtifacts@1
-  inputs:
-    buildType: 'specific'
-    project: '1caabf28-caad-4f2c-9c01-07a7ae94fe54'
-    pipeline: '2'
-    specificBuildWithTriggering: true
-    buildVersionToDownload: 'latest'
-    allowPartiallySucceededBuilds: true
-    downloadType: 'single'
-    artifactName: 'Test'
-    downloadPath: '$(System.ArtifactsDirectory)'
-- task: DownloadBuildArtifacts@1
-  inputs:
-    buildType: 'specific'
-    project: '1caabf28-caad-4f2c-9c01-07a7ae94fe54'
-    pipeline: '2'
-    specificBuildWithTriggering: true
-    buildVersionToDownload: 'latest'
-    downloadType: 'single'
-    downloadPath: '$(System.ArtifactsDirectory)'
 # Build your Java project and run tests with Apache Maven.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
@@ -35,14 +9,12 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-
-- task: Bash@3
+steps:
+- task: Maven@3
   inputs:
-    targetType: 'inline'
-    script: |
-      # Write your commands here
-      
-      echo 'Hello world'
+    mavenPomFile: 'pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
