@@ -1,11 +1,5 @@
 # Maven
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: |
-      #!/bin/bash
-      echo "##vso[task.setvariable variable=sauce]crushed tomatoes"
-      echo "##vso[task.setvariable variable=secret.Sauce;issecret=true]crushed tomatoes with garlic"
+
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Pipeline.Workspace)'
@@ -41,12 +35,7 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
+
 - task: Bash@3
   inputs:
     targetType: 'inline'
